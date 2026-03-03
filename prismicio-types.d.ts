@@ -253,16 +253,6 @@ export interface LayoutDocumentDataSocialMediaItem {
   >
 
   /**
-   * Label field in *Layout → Social Media*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: layout.social_media[].label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  label: prismic.KeyTextField
-
-  /**
    * Link field in *Layout → Social Media*
    *
    * - **Field Type**: Link

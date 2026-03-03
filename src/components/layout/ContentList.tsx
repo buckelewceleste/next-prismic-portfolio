@@ -16,7 +16,7 @@ type ContentListProps = {
   page: number | undefined
   display: number | undefined
   ctaText?: string
-  fallbackItemImage: ImageField
+  fallbackItemImage?: ImageField
 }
 
 const ContentList = async ({
@@ -54,7 +54,7 @@ const ContentList = async ({
                   <Link href={item.url || '#'}>
                     <PrismicNextImage
                       field={
-                        item.data.featured_image.url
+                        isFilled.image(item.data.featured_image)
                           ? item.data.featured_image
                           : fallbackItemImage
                       }

@@ -13,6 +13,10 @@ const Footer = async (): Promise<React.JSX.Element> => {
         cta_link
         privacy_label
         privacy_link
+        social_media {
+          platform
+          link
+        }
         slices1 {
           ...on footer_heading {
             variation {

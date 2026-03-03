@@ -97,19 +97,14 @@
                 ]
               }
             },
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            },
             "link": {
               "type": "Link",
               "config": {
                 "label": "Link",
                 "placeholder": "",
-                "select": null
+                "select": null,
+                "allowText": true,
+                "allowTargetBlank": true
               }
             }
           }

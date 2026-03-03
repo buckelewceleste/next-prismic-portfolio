@@ -17,15 +17,15 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: Params
-  searchParams: SearchParams
+  params: Promise<Params>
+  searchParams: Promise<SearchParams>
 }) {
   const client = createClient()
-  const page = await client
-    .getByUID('post', params.uid, {})
-    .catch(() => notFound())
+  const { uid } = await params
+  const { searchPage } = await searchParams
+  const page = await client.getByUID('post', uid, {}).catch(() => notFound())
   const settings = await client.getSingle('settings')
-  const pageNumber = { page: searchParams.page }
+  const pageNumber = { page: searchPage }
 
   const jsonLd: Graph = {
     '@context': 'https://schema.org',
@@ -83,10 +83,11 @@ export default async function Page({
 export async function generateMetadata({
   params,
 }: {
-  params: Params
+  params: Promise<Params>
 }): Promise<Metadata> {
   const client = createClient()
-  const page = await client.getByUID('post', params.uid).catch(() => notFound())
+  const { uid } = await params
+  const page = await client.getByUID('post', uid).catch(() => notFound())
   const settings = await client.getSingle('settings')
 
   return {
