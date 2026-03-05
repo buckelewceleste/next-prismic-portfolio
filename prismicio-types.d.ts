@@ -398,6 +398,7 @@ export type LayoutDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | OptOutSlice
   | StickyImageSlice
   | ExperienceSlice
   | FormSlice
@@ -632,6 +633,17 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   site_meta_image: prismic.ImageField<never>
+
+  /**
+   * Privacy Toast Message field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.privacy_toast_message
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  privacy_toast_message: prismic.KeyTextField
 }
 
 /**
@@ -2195,6 +2207,33 @@ export type ImageWithTextSlice = prismic.SharedSlice<
 >
 
 /**
+ * Default variation for OptOut Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type OptOutSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  never
+>
+
+/**
+ * Slice variation for *OptOut*
+ */
+type OptOutSliceVariation = OptOutSliceDefault
+
+/**
+ * OptOut Shared Slice
+ *
+ * - **API ID**: `opt_out`
+ * - **Description**: OptOut
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type OptOutSlice = prismic.SharedSlice<'opt_out', OptOutSliceVariation>
+
+/**
  * Item in *Process → Default → Primary → Steps*
  */
 export interface ProcessSliceDefaultPrimaryStepsItem {
@@ -2697,6 +2736,9 @@ declare module '@prismicio/client' {
       ImageWithTextSliceVariation,
       ImageWithTextSliceDefault,
       ImageWithTextSliceRightImage,
+      OptOutSlice,
+      OptOutSliceVariation,
+      OptOutSliceDefault,
       ProcessSlice,
       ProcessSliceDefaultPrimaryStepsItem,
       ProcessSliceDefaultPrimary,

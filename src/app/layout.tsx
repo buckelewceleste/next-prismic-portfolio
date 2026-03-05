@@ -7,6 +7,9 @@ import Footer from '@/components/layout/Footer/Footer'
 import { Outfit } from 'next/font/google'
 import { PrismicPreview } from '@prismicio/next'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import Analytics from '@/components/Analytics'
+import { Toaster } from '@/components/ui/sonner'
+import PrivacyToast from '@/components/PrivacyToast'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -24,11 +27,18 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID
+  // const fbId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID
+  const isProd = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+  const siteUrl = isProd ? 'https://www.celestebuckelew.com' : ''
+  const client = createClient()
+  const settings = await client.getSingle('settings')
   return (
     <html
       lang="en"
@@ -56,8 +66,11 @@ export default function RootLayout({
           <Header />
           <main id="main-content">{children}</main>
           <Footer />
+          <PrivacyToast message={settings.data.privacy_toast_message} />
+          <Toaster richColors closeButton />
           <PrismicPreview repositoryName={repositoryName} />
         </ThemeProvider>
+        {isProd && <Analytics gaId={gaId} clarityId={clarityId} />}
       </body>
     </html>
   )

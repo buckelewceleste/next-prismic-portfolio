@@ -14,6 +14,7 @@ export const components = {
   form: dynamic(() => import('./Form')),
   hero: dynamic(() => import('./Hero')),
   image_with_text: dynamic(() => import('./ImageWithText')),
+  opt_out: dynamic(() => import('./OptOut')),
   process: dynamic(() => import('./Process')),
   rich_text: dynamic(() => import('./RichText')),
   sticky_image: dynamic(() => import('./StickyImage')),
