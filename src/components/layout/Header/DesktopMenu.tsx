@@ -12,12 +12,12 @@ const DesktopMenu = ({ navigation }: DesktopMenuProps) => {
       <ul className="flex gap-x-3">
         {navigation.map((item, i) => {
           return (
-            <li key={item.label ? item.label + i : i}>
+            <li key={item.link.text ? item.link.text + i : i}>
               <PrismicNextLink
                 field={item.link}
                 className={cn(buttonVariants({ variant: 'ghost' }))}
               >
-                {item.label}
+                {item.link.text}
               </PrismicNextLink>
             </li>
           )

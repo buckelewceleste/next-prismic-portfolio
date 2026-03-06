@@ -29,6 +29,15 @@
             "thumbnails": []
           }
         },
+        "flip_horizontal": {
+          "type": "Boolean",
+          "config": {
+            "label": "Flip Horizontal",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
         "link": {
           "type": "Link",
           "config": {

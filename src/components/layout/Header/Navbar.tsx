@@ -8,11 +8,10 @@ import {
 } from '@prismicio/client'
 import Section from '../Section'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
-import { buttonVariants } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import DesktopMenu from './DesktopMenu'
 import { LayoutDocumentDataNavigationItem } from '../../../../prismicio-types'
 import MobileMenu from './MobileMenu'
-import Heading from '@/components/typography/Heading'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
@@ -21,18 +20,11 @@ import { useState } from 'react'
 type NavbarProps = {
   navigation: Array<LayoutDocumentDataNavigationItem>
   cta_link: LinkField
-  cta_label: KeyTextField
   logo: ImageField
   site_title: KeyTextField
 }
 
-const Navbar = ({
-  logo,
-  navigation,
-  cta_link,
-  cta_label = 'Take Action',
-  site_title,
-}: NavbarProps) => {
+const Navbar = ({ logo, navigation, cta_link, site_title }: NavbarProps) => {
   const [hidden, setHidden] = useState(false)
   const { scrollY } = useScroll()
 
@@ -71,13 +63,7 @@ const Navbar = ({
                 width={60}
               />
             ) : (
-              <Heading
-                as="h1"
-                size="xl"
-                className="p-1.5 dark:text-sidebar-primary"
-              >
-                {site_title}
-              </Heading>
+              <p className="p-1.5 dark:text-sidebar-primary">{site_title}</p>
             )}
           </Link>
           <div className="flex items-center gap-x-4 lg:gap-x-8">
@@ -89,15 +75,23 @@ const Navbar = ({
             )}
 
             {isFilled.link(cta_link) && (
-              <PrismicNextLink
-                field={cta_link}
-                className={cn(
-                  buttonVariants({ variant: 'default' }),
-                  'hidden md:inline-flex',
-                )}
+              <Button
+                asChild
+                variant={
+                  (cta_link.variant as
+                    | 'default'
+                    | 'outline'
+                    | 'secondary'
+                    | 'ghost'
+                    | 'destructive'
+                    | 'link') || 'default'
+                }
+                className="hidden md:inline-flex"
               >
-                {cta_label}
-              </PrismicNextLink>
+                <PrismicNextLink field={cta_link}>
+                  {cta_link.text}
+                </PrismicNextLink>
+              </Button>
             )}
             <ThemeToggle />
           </div>

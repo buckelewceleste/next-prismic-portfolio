@@ -216,16 +216,6 @@ export type HomepageDocument<Lang extends string = string> =
  */
 export interface LayoutDocumentDataNavigationItem {
   /**
-   * Label field in *Layout → Navigation*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: layout.navigation[].label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  label: prismic.KeyTextField
-
-  /**
    * Link field in *Layout → Navigation*
    *
    * - **Field Type**: Link
@@ -272,17 +262,6 @@ type LayoutDocumentDataSlices1Slice =
  */
 interface LayoutDocumentData {
   /**
-   * CTA Label field in *Layout*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: layout.cta_label
-   * - **Tab**: Header
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  cta_label: prismic.KeyTextField
-
-  /**
    * CTA Link field in *Layout*
    *
    * - **Field Type**: Link
@@ -296,7 +275,7 @@ interface LayoutDocumentData {
     string,
     unknown,
     prismic.FieldState,
-    never
+    'default' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'link'
   >
 
   /**
@@ -2513,6 +2492,17 @@ export interface StickyImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>
+
+  /**
+   * Flip Horizontal field in *StickyImage → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: sticky_image.default.primary.flip_horizontal
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  flip_horizontal: prismic.BooleanField
 
   /**
    * Link field in *StickyImage → Default → Primary*

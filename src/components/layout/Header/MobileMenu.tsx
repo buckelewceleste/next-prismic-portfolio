@@ -35,14 +35,14 @@ const MobileMenu = ({ navigation, className, site_title }: MobileMenuProps) => {
               </SheetTitle>
             )}
           </SheetHeader>
-          <ul className="mt-8 grid gap-y-4">
+          <ul className="mt-8 grid gap-y-4 p-3">
             {navigation.map((item, i) => {
               return (
-                <li key={item.label ? item.label + i : i}>
+                <li key={item.link.text ? item.link.text + i : i}>
                   <SheetClose asChild>
-                    <Button asChild variant={'outline'} className="flex">
+                    <Button asChild variant={'default'} className="flex">
                       <PrismicNextLink field={item.link}>
-                        {item.label}
+                        {item.link.text}
                       </PrismicNextLink>
                     </Button>
                   </SheetClose>

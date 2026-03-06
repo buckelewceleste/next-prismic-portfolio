@@ -5,6 +5,7 @@ import Section from '@/components/layout/Section'
 import { PrismicRichText } from '@/components/typography/PrismicRichText'
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 /**
  * Props for `StickyImage`.
@@ -37,7 +38,9 @@ const StickyImage: FC<StickyImageProps> = ({ slice }) => {
           <div className="flex justify-center">
             <PrismicNextImage
               field={image}
-              className="max-w-76 rounded-xl object-cover"
+              className={cn('max-w-76 rounded-xl object-cover', {
+                'scale-x-[-1]': slice.primary.flip_horizontal,
+              })}
               fetchPriority="high"
               height={304}
               width={304}

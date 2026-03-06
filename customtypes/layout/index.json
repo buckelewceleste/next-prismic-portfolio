@@ -6,19 +6,22 @@
   "status": true,
   "json": {
     "Header": {
-      "cta_label": {
-        "type": "Text",
-        "config": {
-          "label": "CTA Label",
-          "placeholder": ""
-        }
-      },
       "cta_link": {
         "type": "Link",
         "config": {
           "label": "CTA Link",
           "placeholder": "",
-          "select": null
+          "select": null,
+          "allowText": true,
+          "allowTargetBlank": true,
+          "variants": [
+            "default",
+            "secondary",
+            "outline",
+            "ghost",
+            "destructive",
+            "link"
+          ]
         }
       },
       "logo": {
@@ -35,19 +38,14 @@
           "label": "Navigation",
           "repeat": true,
           "fields": {
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            },
             "link": {
               "type": "Link",
               "config": {
                 "label": "Link",
                 "placeholder": "",
-                "select": null
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true
               }
             }
           }
