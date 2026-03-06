@@ -53,19 +53,13 @@
       }
     },
     "Footer": {
-      "privacy_label": {
-        "type": "Text",
-        "config": {
-          "label": "Privacy Label",
-          "placeholder": ""
-        }
-      },
       "privacy_link": {
         "type": "Link",
         "config": {
           "label": "Privacy Link",
           "placeholder": "",
-          "select": null
+          "select": null,
+          "allowText": true
         }
       },
       "copyright": {

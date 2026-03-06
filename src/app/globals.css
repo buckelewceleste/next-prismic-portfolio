@@ -251,6 +251,6 @@
 
   /* The dot on each timeline item */
   .timeline-item::before {
-    @apply absolute top-1 -left-7.75 h-4 w-4 rounded-full border-4 border-background bg-primary content-[''];
+    @apply absolute top-3 -left-8 h-4 w-4 rounded-full border-4 border-background bg-primary content-[''];
   }
 }

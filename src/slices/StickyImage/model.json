@@ -29,6 +29,15 @@
             "thumbnails": []
           }
         },
+        "make_black_and_white": {
+          "type": "Boolean",
+          "config": {
+            "label": "Make Black and White",
+            "placeholder_false": "Color",
+            "placeholder_true": "Black and White",
+            "default_value": false
+          }
+        },
         "flip_horizontal": {
           "type": "Boolean",
           "config": {

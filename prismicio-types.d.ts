@@ -299,17 +299,6 @@ interface LayoutDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   navigation: prismic.GroupField<Simplify<LayoutDocumentDataNavigationItem>> /**
-   * Privacy Label field in *Layout*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: layout.privacy_label
-   * - **Tab**: Footer
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  privacy_label: prismic.KeyTextField
-
-  /**
    * Privacy Link field in *Layout*
    *
    * - **Field Type**: Link
@@ -981,6 +970,31 @@ export type ExperienceSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *Faq → Default → Primary → Questions*
+ */
+export interface FaqSliceDefaultPrimaryQuestionsItem {
+  /**
+   * Question field in *Faq → Default → Primary → Questions*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.questions[].question
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  question: prismic.RichTextField
+
+  /**
+   * Answer field in *Faq → Default → Primary → Questions*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.questions[].answer
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  answer: prismic.RichTextField
+}
+
+/**
  * Primary content in *Faq → Default → Primary*
  */
 export interface FaqSliceDefaultPrimary {
@@ -993,31 +1007,16 @@ export interface FaqSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   heading: prismic.RichTextField
-}
-
-/**
- * Primary content in *Faq → Items*
- */
-export interface FaqSliceDefaultItem {
-  /**
-   * Question field in *Faq → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: faq.items[].question
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  question: prismic.RichTextField
 
   /**
-   * Answer field in *Faq → Items*
+   * Questions field in *Faq → Default → Primary*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: faq.items[].answer
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   * - **API ID Path**: faq.default.primary.questions[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
-  answer: prismic.RichTextField
+  questions: prismic.GroupField<Simplify<FaqSliceDefaultPrimaryQuestionsItem>>
 }
 
 /**
@@ -1030,7 +1029,7 @@ export interface FaqSliceDefaultItem {
 export type FaqSliceDefault = prismic.SharedSliceVariation<
   'default',
   Simplify<FaqSliceDefaultPrimary>,
-  Simplify<FaqSliceDefaultItem>
+  never
 >
 
 /**
@@ -2494,6 +2493,17 @@ export interface StickyImageSliceDefaultPrimary {
   image: prismic.ImageField<never>
 
   /**
+   * Make Black and White field in *StickyImage → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: sticky_image.default.primary.make_black_and_white
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  make_black_and_white: prismic.BooleanField
+
+  /**
    * Flip Horizontal field in *StickyImage → Default → Primary*
    *
    * - **Field Type**: Boolean
@@ -2677,8 +2687,8 @@ declare module '@prismicio/client' {
       ExperienceSliceVariation,
       ExperienceSliceDefault,
       FaqSlice,
+      FaqSliceDefaultPrimaryQuestionsItem,
       FaqSliceDefaultPrimary,
-      FaqSliceDefaultItem,
       FaqSliceVariation,
       FaqSliceDefault,
       FeaturesSlice,

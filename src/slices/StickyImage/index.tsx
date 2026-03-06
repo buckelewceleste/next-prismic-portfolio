@@ -47,7 +47,11 @@ const StickyImage: FC<StickyImageProps> = ({ slice }) => {
               loading="eager"
               sizes="304px"
               preload={true}
-              imgixParams={{ ar: '1:1', fit: 'crop' }}
+              imgixParams={{
+                ar: '1:1',
+                fit: 'crop',
+                ...(slice.primary.make_black_and_white && { sat: -100 }),
+              }}
             />
           </div>
           <div className="flex justify-center">

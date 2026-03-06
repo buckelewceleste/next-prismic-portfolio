@@ -30,7 +30,7 @@ const FooterContent = ({
   data,
   settings,
 }: FooterContentProps): React.JSX.Element => {
-  const { privacy_label, privacy_link, copyright, social_media } = data
+  const { privacy_link, copyright, social_media } = data
   return (
     <Section as="footer" className="bg-primary text-primary-foreground">
       <SliceZone components={components} slices={data.slices1} />
@@ -100,7 +100,9 @@ const FooterContent = ({
         </div>
       )}
       <div className="my-4 text-center lg:my-8">
-        <PrismicNextLink field={privacy_link}>{privacy_label}</PrismicNextLink>
+        <PrismicNextLink field={privacy_link}>
+          {privacy_link.text ? privacy_link.text : 'Missing Privacy Link Text'}
+        </PrismicNextLink>
       </div>
       <div className="text-center text-xs lg:text-sm">
         {copyright} <CopyrightIcon className="inline w-3 pb-1" /> <Copyright />{' '}
