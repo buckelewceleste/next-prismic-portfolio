@@ -33,8 +33,11 @@ const Experience: FC<ExperienceProps> = ({ slice }) => {
 
       <div className="timeline">
         {slice.primary.experiences.map((item, index) => (
-          <div key={index} className="timeline-item">
-            <div className="mb-4 flex flex-wrap items-center justify-center lg:justify-between">
+          <div
+            key={index}
+            className="timeline-item group rounded-md p-4 ring-primary/50 transition duration-300 ease-in-out hover:ring-2"
+          >
+            <div className="mb-4 flex flex-col items-center justify-center gap-4 lg:flex-row lg:justify-between">
               <Heading as="h3" size="3xl">
                 {item.title}
               </Heading>
