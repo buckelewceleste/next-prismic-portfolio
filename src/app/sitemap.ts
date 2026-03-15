@@ -43,9 +43,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // 3. Map and flatten your results
+  // Filter out any entries where the URL couldn't be resolved
   return [
-    formatEntry(homepage),
+    homepage ? formatEntry(homepage) : null,
     ...pages.map(formatEntry),
     ...posts.map(formatEntry),
-  ]
+  ].filter(
+    (entry): entry is NonNullable<typeof entry> =>
+      entry !== null && !!entry.url,
+  )
 }
